@@ -71,8 +71,6 @@ class taldea_controller extends Controller
     }
 
 
-
-
     public function ezabatu(Request $aux, $kodea)
     {
         // Valida los datos del formulario según tus necesidades

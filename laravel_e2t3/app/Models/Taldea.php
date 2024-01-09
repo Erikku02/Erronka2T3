@@ -12,6 +12,8 @@ class Taldea extends Model
 
     protected $primaryKey = 'kodea';
 
+    protected $keyType = 'string';
+
     protected $fillable = [
         'izena', 'updated_at', 'deleted_at', 
     ];
