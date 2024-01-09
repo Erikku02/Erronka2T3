@@ -44,9 +44,6 @@ class taldea_controller extends Controller
 
 
 
-
-
-
     public function eguneratu(Request $aux, $kodea)
     {
         // Valida los datos del formulario según tus necesidades
@@ -72,9 +69,6 @@ class taldea_controller extends Controller
         // Devuelve el registro actualizado con un código de estado 200
         return response()->json($taldeEguneratuta, 200);
     }
-
-
-
 
 
     public function ezabatu(Request $aux, $kodea)

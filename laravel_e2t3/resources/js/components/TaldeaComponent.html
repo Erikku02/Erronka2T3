@@ -1,0 +1,58 @@
+<!-- resources/js/components/TaldeaComponent.vue -->
+<template>
+    <div>
+        <h1>Lista de taldea</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="taldea in taldea" :key="taldea.kodea">
+                    <td>{{ taldea.kodea }}</td>
+                    <td>{{ taldea.izena }}</td>
+                    <td>
+                        <button @click="editarTaldea(taldea.kodea)">Editar</button>
+                        <button @click="eliminarTaldea(taldea.kodea)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            taldea: [],
+        };
+    },
+    mounted() {
+        // Realiza la llamada a la API al cargar el componente
+        fetch('http://localhost/Laravel/ERRONKA2/public/api/taldearuta')
+            .then(response => response.json())
+            .then(data => {
+                this.taldea = data;
+            })
+            .catch(error => console.error('Error:', error));
+    },
+    methods: {
+        editarTaldea(kodea) {
+            // Lógica para editar una taldea
+            console.log('Editar taldea con código:', kodea);
+        },
+        eliminarTaldea(kodea) {
+            // Lógica para eliminar una taldea
+            console.log('Eliminar taldea con código:', kodea);
+        },
+    },
+};
+</script>
+
+<style scoped>
+/* Agrega tus estilos aquí */
+</style>
