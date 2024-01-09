@@ -31,6 +31,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle link-light" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-calendar3 m-2"></i>
                                 Citas
                             </a>
                             <ul class="dropdown-menu">
@@ -43,7 +44,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active link-light" href="#">Almacén</a>
+                            <a class="nav-link active link-light" href="#">
+                                Almacén</a>
                         </li>
 
                         <li class="nav-item">
@@ -133,12 +135,13 @@
                 </table>
             </div>
 
-            <div class="row justify-content-center align-items-center">
+            <!-- <div class="row justify-content-center align-items-center"> -->
+            <div class="row d-flex justify-content-center">
+
                 <h3 class="text-center">Añadir grupo</h3>
 
-                <form class="row g-3 justify-content-center align-items-center">
-
-                    <div class="col-sm-3 col-lg-">
+                <form class="row g-3 d-flex flex-column justify-content-center align-content-center">
+                    <div class="col-sm-6 col-lg-3">
                         <!-- <label for="input1" class="">Código</label> -->
                         <input type="text" class="form-control" id="input1" placeholder="Código">
                     </div>
@@ -146,7 +149,7 @@
                         <!-- <label for="input2" class="">Nombre</label> -->
                         <input type="text" class="form-control" id="input2" placeholder="Nombre del grupo">
                     </div>
-                    <div class="col-sm-2 col-lg-2">
+                    <div class="col-sm-2 col-lg-2 mb-auto ms-sm-auto">
                         <button type="submit" class="btn btn-primary">Añadir</button>
                     </div>
                 </form>
