@@ -40,8 +40,7 @@ class ordutegia_controller extends Controller
         if (!$ordutegiEguneratuta) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
-        
-
+    
         // Actualiza los valores del modelo con los datos del formulario
         $ordutegiEguneratuta->update([
             'eguna' => $aux->input('eguna'),
@@ -54,6 +53,24 @@ class ordutegia_controller extends Controller
 
         // Devuelve el registro actualizado con un código de estado 200
         return response()->json($ordutegiEguneratuta, 200);
+    }
+
+    public function ezabatu(Request $aux, $id)
+    {
+        $ordutegiEzabatuta = Ordutegia::where('id', $id)->first();
+
+        // Si no se encuentra el registro, devuelve un error 404
+        if (!$ordutegiEzabatuta) {
+            return response()->json(['error' => 'Registro no encontrado'], 404);
+        }
+
+        // Actualiza los valores del modelo con los datos del formulario
+        $ordutegiEzabatuta->update([
+            'deleted_at' => now()
+        ]);
+
+        // Devuelve el registro actualizado con un código de estado 200
+        return response()->json($ordutegiEzabatuta, 200);
     }
 
 }
