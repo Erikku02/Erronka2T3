@@ -221,39 +221,96 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
     <!-- VUE script -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
 
-    <div id="app">{{  }}</div>
+    <!-- <div id="app">{{ data }}</div>
+    <div id="app">{{ fetchData }}</div> -->
 
+    <div id="app">
+        <button @click="fetchData">Fetch Data</button>
+        <ul>
+            <li v-for="item in data" :key="item.id">{{ item.title }}</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        const { createApp, ref } = Vue;
-
-        createApp({
-            setup() {
-                const message = ref('Hello vue!')
-                const data = ref([]);
-
-                const fetchData = async () => {
-                    try {
-                        const response = await fetch ('../laravel_e2t3/App/Http/Controllers/taldea_controller.php');
-                        const jsonData = await response.json();
-                        data.value = jsonData;
-                        console.log(data);
-                    } catch (error) {
-                        // console.log('Error fetching data' , error);
-                        console.error('Error fetching data' , error);
-                    }
-                }
-
-
-
-                return {
-                    message,
-                    data,
-                    fetchData
-                };
+        new Vue({
+            el: '#app',
+            data: {
+                arrayId: []
             },
-        }).mount('#app')
+            methods: {
+                editDisabled() {
+                    if (this.arrayId.length > 1 || this.arrayId.length == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                cargaLangile() {
+                    const llamandoAPI = async () => {
+                        try {
+                            let options = { method: "GET", mode: 'cors' };
+                            console.log("aaa");
+                            const respuesta = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldearuta', options);
+                            const data = respuesta.json();
+                            console.log(data);
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                    // try {
+                    //   const response = async() => {
+                    //     let options = {method: "GET", mode: 'cors'};
+                    //     console.log("aa");
+
+                    // const resposnse = await fetch('http://localhost/Erronka2/Back/talde1erronka2/public/api/txandaklortu',options)
+                    // // .then(data =>{
+                    // //   return data.json();
+                    // // })
+                    // // .then(response =>{
+                    // //   console.log(response);
+                    // // });
+
+                    //   const json = response.json();
+                    //   console.log(json);
+                    // }
+                    // } catch (error) {
+                    // console.error(error);
+
+                    // }
+                }
+            }
+        });
+
+
+        // const { createApp, ref } = Vue;
+
+        // createApp({
+        //     async setup() {
+        //         const data = ref([]);
+
+        //         const fetchData = async () => {
+        //             try {
+        //                 const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldearuta');
+        //                 // const response = await fetch('../laravel_e2t3/app/Http/Controllers/taldea_controller.php');
+
+        //                 const jsonData = await response.json();
+        //                 data.value = jsonData;
+        //                 console.log(data);
+        //             } catch (error) {
+        //                 // console.log('Error fetching data', error);
+        //                 console.error('Error fetching data', error);
+        //             }
+        //         }
+        //         return {
+        //             data,
+        //             fetchData
+        //         };
+        //     },
+        // }).mount('#app')
     </script>
 </body>
 
