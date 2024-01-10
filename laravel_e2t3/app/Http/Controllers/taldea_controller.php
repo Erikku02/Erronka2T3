@@ -21,14 +21,6 @@ class taldea_controller extends Controller
 
     public function gorde(Request $aux)
     {
-        // Valida los datos del formulario según tus necesidades
-        $this->validate($aux, [
-            'kodea' => 'required',
-            'izena' => 'required',
-        ]);
-
-        // Eloquent erabiliz modeloa sortu
-        //$nuevoBeharra = new Taldea;
         $nuevoTalde = array(
             'kodea' => $aux->input('kodea'),
             'izena' => $aux->input('izena'),
@@ -46,12 +38,6 @@ class taldea_controller extends Controller
 
     public function eguneratu(Request $aux, $kodea)
     {
-        // Valida los datos del formulario según tus necesidades
-        $this->validate($aux, [
-            'kodea' => 'required',
-            'izena' => 'required',
-        ]);
-
         $taldeEguneratuta = Taldea::where('kodea', $kodea)->first();
 
         // Si no se encuentra el registro, devuelve un error 404
@@ -73,11 +59,6 @@ class taldea_controller extends Controller
 
     public function ezabatu(Request $aux, $kodea)
     {
-        // Valida los datos del formulario según tus necesidades
-        $this->validate($aux, [
-            'kodea' => 'required'
-        ]);
-
         $taldeEguneratuta = Taldea::where('kodea', $kodea)->first();
 
         // Si no se encuentra el registro, devuelve un error 404

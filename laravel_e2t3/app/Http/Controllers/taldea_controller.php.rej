@@ -1,9 +1,0 @@
-diff a/laravel_e2t3/app/Http/Controllers/taldea_controller.php b/laravel_e2t3/app/Http/Controllers/taldea_controller.php	(rejected hunks)
-@@ -73,7 +73,6 @@
- 
- 
- 
--
-     public function ezabatu(Request $aux, $kodea)
-     {
-         // Valida los datos del formulario según tus necesidades
