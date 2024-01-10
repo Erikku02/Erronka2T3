@@ -15,17 +15,6 @@ class ordutegia_controller extends Controller
 
     public function gorde(Request $aux)
     {
-        // Valida los datos del formulario según tus necesidades
-        $this->validate($aux, [
-            'kodea' => 'required',
-            'eguna' => 'required',
-            'hasiera_data' => 'required',
-            'amaiera_data' => 'required',
-            'hasiera_ordua' => 'required',
-            'amaiera_ordua' => 'required',
-
-        ]);
-
         $nuevoHorario = array(
             'kodea' => $aux->input('kodea'),
             'eguna' => $aux->input('eguna'),
