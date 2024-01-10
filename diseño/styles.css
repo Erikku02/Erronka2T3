@@ -1,9 +1,18 @@
+/* * {
+    background-color: #F5F9FE;
+}
+
+.row {
+    background-color: #24A0E6;
+} */
+
 /* BARRA DE NAVEGACION (SE VE SIEMPRE) */
 .navbar {
     background-color: #F7F7F7;
 }
 .navbar-brand {
     color: #24A0E6;
+    font-size: 180%;
 }
 /* Estilo para la barra de navegación fija en la parte superior */
 .navbar.fixed-top {
