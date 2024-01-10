@@ -21,8 +21,12 @@
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- FIXME: no se centra bien  -->
-            <a class="navbar-brand mx-auto h3" href="#">Grupos</a>
+            <a class="navbar-brand mx-auto h3 d-flex d-inline" href="#">
+                Grupos
+                <!-- FIXME: buscar como hacero sin puntitos  -->
+                <!-- sin los puntos no se ve bien centrado -->
+                <p class="puntos" style="color: #F7F7F7;">........</p>
+            </a>
 
             <!-- Barra de navegacion fija -->
             <i class="bi bi-box-arrow-right h3"></i>
@@ -180,12 +184,35 @@
                 </table>
             </div>
 
+            <!-- prueba  -->
+            <!-- <div class="row p-5">
+                <h4 class="text-center">Añadir grupo</h4>
+                <form class="d-flex flex-column justify-content-center align-content-center" action="#" method="post">
+                    <div>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <button type="submit">Añadir</button>
+                    </div>
+                </form>
+            </div> -->
+
+
+
+
+
+
+
             <!-- FORMULARIO AÑADIR GRUPO -->
             <!-- <div class="row justify-content-center align-items-center"> -->
-            <div class="row d-flex justify-content-center p-5">
+            <div class="row d-flex justify-content-center p-5" style="width: 100%;">
                 <h4 class="text-center pt-5 mx-auto">Añadir grupo</h4>
 
-                <form class="row g-3 d-flex flex-column justify-content-center align-content-center">
+                <form class="row g-3 d-flex flex-column justify-content-center align-content-center"
+                    style="width: 100%;">
                     <div class="col-sm-6 col-lg-3">
                         <!-- <label for="input1" class="">Código</label> -->
                         <input type="text" class="form-control" id="input1" placeholder="Código" />
@@ -197,7 +224,7 @@
 
                     <!-- FIXME: el button solo se centra cuando esta en pantalla completa-->
                     <!-- <div class="col-sm-2 col-lg-2 mb-auto ms-auto mx-auto"> -->
-                    <div class="col-sm-2 col-lg-2 mb-auto ms-sm-auto">
+                    <div class="col-1 align-self-center">
 
                         <button type="submit" class="btn btn-primary">Añadir</button>
                     </div>
