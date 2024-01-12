@@ -22,11 +22,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand mx-auto h3 d-flex d-inline" href="#">
-                Grupos
+                Trabajadores
                 <!-- FIXME: buscar como hacero sin puntitos  -->
                 <!-- sin los puntos no se ve bien centrado -->
                 <p class="puntos" style="color: #F7F7F7;">........</p>
             </a>
+
             <!-- Barra de navegacion fija -->
             <i class="bi bi-box-arrow-right h3"></i>
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
@@ -144,15 +145,32 @@
         </div>
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <main id="app">
+    <main>
         <div class="container">
+            <header class="row">
+                <ul class="nav nav-tabs mt-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">3WAG2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </header>
+
+
             <div class="row">
                 <!-- Iconos para editar los datos -->
-                <div class="icons h4 text-end mt-4">
-                    <i class="bi bi-check-circle m-2" @click="actuTalde()"></i>
-                    <i class="bi bi-dash-circle" @="ezabTalde()"></i>
+                <div class="icons h4 text-end mt-3">
+                    <i class="bi bi-check-circle"></i>
+                    <i class="bi bi-dash-circle"></i>
                 </div>
 
                 <!-- Tabla -->
@@ -160,20 +178,25 @@
                     <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col">Código</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Apellidos</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(talde) in listaTalde">
-                            <th><input type="checkbox" :value="talde.kodea" v-model="arrayKodea" /></th>
-                            <td>{{talde.kodea}}</td>
-                            <td>
-                                <span v-if="!arrayKodea.includes(talde.kodea)">
-                                    {{talde.izena}}
-                                </span>
-                                <input v-else type="text" :value="talde.izena" v-model="izenaEgu" />
-                            </td>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <td>Larry the Bird</td>
+                            <td>@twitter</td>
                         </tr>
                     </tbody>
                 </table>
@@ -183,27 +206,40 @@
             <!-- FORMULARIO AÑADIR GRUPO -->
             <!-- <div class="row justify-content-center align-items-center"> -->
             <div class="row d-flex justify-content-center p-5" style="width: 100%;">
-                <h4 class="text-center pt-5 mx-auto">Añadir grupo</h4>
+                <h4 class="text-center pt-5 mx-auto">Añadir trabajador</h4>
 
                 <form class="row g-3 d-flex flex-column justify-content-center align-content-center"
                     style="width: 100%;">
+                    <div class="btn-group col-sm-6 col-lg-3">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Grupo
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
                     <div class="col-sm-6 col-lg-3">
                         <!-- <label for="input1" class="">Código</label> -->
-                        <input type="text" class="form-control" id="input1" v-model="kodeaSortu" placeholder="Código" />
+                        <input type="text" class="form-control" id="input1" placeholder="Nombre" />
                     </div>
                     <div class="col-sm-6 col-lg-3">
                         <!-- <label for="input2" class="">Nombre</label> -->
-                        <input type="text" class="form-control" id="input2" v-model="izenaSortu"
-                            placeholder="Nombre del grupo" />
+                        <input type="text" class="form-control" id="input2" placeholder="Apellido" />
                     </div>
 
                     <!-- FIXME: el button solo se centra cuando esta en pantalla completa-->
                     <!-- <div class="col-sm-2 col-lg-2 mb-auto ms-auto mx-auto"> -->
                     <div class="col-1 align-self-center">
-                        <!-- <button type="submit" class="btn btn-primary">Añadir</button> -->
-                        <div class="col-sm-2 col-lg-2 mb-auto ms-sm-auto">
-                            <button @click.prevent="createTalde()" class="btn btn-primary">Añadir</button>
-                        </div>
+
+                        <button type="submit" class="btn btn-primary">Añadir</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -223,154 +259,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
-    <!-- VUE script -->
-    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
-
-    <!-- <div id="app">{{ data }}</div>
-    <div id="app">{{ fetchData }}</div> -->
-
-    <!-- <div id="app">
-        <button @click="fetchData">Fetch Data</button>
-        <ul>
-            <li v-for="item in data" :key="item.id">{{ item.title }}</li>
-        </ul>
-    </div> -->
-
-
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                selectedCheckbox: null, // Esta variable almacenará la ID del checkbox seleccionado
-                arrayKodea: [],
-                kodeaEgu: "",
-                izenaEgu: "",
-                kodeaSortu: "",
-                izenaSortu: "",
-                listaTalde: [],
-                listaTaldeByKodea: [],
-                existe: null
-            },
-            methods: {
-                async cargaTalde() {
-                    try {
-                        const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldearuta', {
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Access-Control-Allow-Origin': '*'
-                            },
-                        });
-
-                        if (!response.ok) {
-                            console.log('Errorea eskera egiterakoan');
-                            throw new Error('Errorea eskaera egiterakoan');
-                        }
-
-                        const datuak = await response.json();
-                        console.log(datuak);
-                        this.listaTalde = datuak
-
-                            .filter(talde => talde.deleted_at === null || talde.deleted_at === "0000-00-00 00:00:00");
-                    } catch (error) {
-                        console.error('Errorea:', error);
-                    }
-                },
-                async createTalde() {
-                    try {
-                        const kodea = this.kodeaSortu;
-                        const izena = this.izenaSortu;
-                        const arraySortu = {
-                            "kodea": kodea,
-                            "izena": izena
-                        };
-
-                        console.log(JSON.stringify(arraySortu));
-
-                        const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldeagorde', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json', // Indicar el tipo de contenido como JSON
-                                'Access-Control-Allow-Origin': '*'
-                            },
-                            body: JSON.stringify(arraySortu), // Convertir el objeto JSON a una cadena JSON
-                        });
-
-                        if (!response.ok) {
-                            console.log('Errorea sortzerakoan');
-                            throw new Error('Errorea sortzerakoan');
-                        }
-
-                        alert('Sortu da');
-                        await this.cargaTalde();
-                        location.reload();
-                    } catch (error) {
-                        console.log('Errorea: ', error);
-                    }
-                },
-                async actuTalde() {
-                    try {
-                        const kodea = this.arrayKodea[0];
-                        const izena = this.izenaEgu;
-                        const arrayActu = {
-                            "kodea": kodea,
-                            "izena": izena
-                        };
-
-                        const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldeaeguneratu/' + kodea, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Access-Control-Allow-Origin': '*'
-                            },
-                            body: JSON.stringify(arrayActu),
-                        });
-
-                        if (!response.ok) {
-                            console.log('Errorea eguneratzerakoan');
-                            throw new Error('Errorea eguneratzerakoan');
-                        }
-
-                        alert('Ondo eguneratuta');
-                        await this.cargaTalde();
-                        location.reload();
-                    } catch (error) {
-                        console.log('Errorea: ', error);
-                    }
-                },
-                async ezabTalde() {
-                    try {
-                        for (var i = 0; i < this.arrayKodea.length; i++) {
-                            const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldeaezabatu/' + this.arrayKodea[i], {
-                                method: 'PUT',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Access-Control-Allow-Origin': '*'
-                                },
-                                body: JSON.stringify(this.arrayKodea[i]),
-                            });
-                        }
-
-
-                        // if(!response.ok){
-                        //   console.log('Errorea eguneratzerakoan');
-                        //   throw new Error('Errorea eguneratzerakoan');
-                        // }
-
-                        alert('Ondo ezabatuta');
-                        await this.cargaTalde();
-                        location.reload();
-                    } catch (error) {
-                        console.log('Errorea: ', error);
-                    }
-                },
-            },
-            mounted() {
-                // Llama a tu función cargarPagina cuando el componente se monta
-                this.cargaTalde();
-            }
-        });
     </script>
-
 </body>
 
 </html>
