@@ -247,7 +247,7 @@
             async cargaTalde() {
               try {
                 // const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldearuta', {
-                const response = await fetch('http://talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldearuta', {
+                const response = await fetch('http://www.talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldearuta', {
                   headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
@@ -280,7 +280,7 @@
                     console.log(JSON.stringify(arraySortu));
 
                     // const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldeagorde', {
-                    const response = await fetch('http://talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldeagorde', { 
+                    const response = await fetch('http://www.talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldeagorde', { 
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json', // Indicar el tipo de contenido como JSON
@@ -310,7 +310,7 @@
                     "izena":izena};
 
                     // const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldeaeguneratu/' + kodea, {
-                    const response = await fetch('http://talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldeaeguneratu/' + kodea, {
+                    const response = await fetch('http://www.talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldeaeguneratu/' + kodea, {
                     method: 'PUT',
                       headers: {
                         'Content-Type': 'application/json',
@@ -335,7 +335,7 @@
                   try{
                     for(var i=0;i<this.arrayKodea.length;i++){
                       // const response = await fetch('http://localhost/Erronka2/laravel_e2t3/public/api/taldeaezabatu/' + this.arrayKodea[i], {
-                      const response = await fetch('http://talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldeaezabatu/' + this.arrayKodea[i], {
+                      const response = await fetch('http://www.talde3-back.edu/Erronka2/laravel_e2t3/public/api/taldeaezabatu/' + this.arrayKodea[i], {
                       method: 'PUT',
                       headers: {
                         'Content-Type': 'application/json',
