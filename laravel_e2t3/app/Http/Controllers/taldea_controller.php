@@ -21,11 +21,8 @@ class taldea_controller extends Controller
 
     public function gorde(Request $aux)
     {
-        $nuevoTalde = array(
-            'kodea' => $aux->input('kodea'),
-            'izena' => $aux->input('izena'),
-            'created_at' => now()
-        );
+        $datos=$aux->all();
+        $nuevoTalde=["kodea"=>$datos["kodea"],"izena"=>$datos["izena"],"created_at" => now()];
 
         // Guarda el nuevo registro en la base de datos
         Taldea::insert($nuevoTalde);
@@ -38,40 +35,35 @@ class taldea_controller extends Controller
 
     public function eguneratu(Request $aux, $kodea)
     {
-        $taldeEguneratuta = Taldea::where('kodea', $kodea)->first();
-
+        $datos=$aux->all();
+        $taldeEguneratuta=["kodea"=>$datos["kodea"],"izena"=>$datos["izena"],"updated_at" => now()];
+        // Actualiza los valores del modelo con los datos del formulario
+        $eguneratuTaula = Taldea::where('kodea', $kodea)->update($taldeEguneratuta);
+        
         // Si no se encuentra el registro, devuelve un error 404
-        if (!$taldeEguneratuta) {
+        if (!$eguneratuTaula) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
 
-        // Actualiza los valores del modelo con los datos del formulario
-        $taldeEguneratuta->update([
-            'kodea' => $aux->input('kodea'),
-            'izena' => $aux->input('izena'),
-            'updated_at' => now()
-        ]);
-
         // Devuelve el registro actualizado con un código de estado 200
-        return response()->json($taldeEguneratuta, 200);
+        return response()->json($eguneratuTaula, 200);
     }
 
 
     public function ezabatu(Request $aux, $kodea)
     {
-        $taldeEguneratuta = Taldea::where('kodea', $kodea)->first();
+        $datos=$aux->all();
+        $taldeEguneratuta=["deleted_at" => now()];
+        // Actualiza los valores del modelo con los datos del formulario
+        $eguneratuTaula = Taldea::where('kodea', $kodea)->update($taldeEguneratuta);
 
         // Si no se encuentra el registro, devuelve un error 404
-        if (!$taldeEguneratuta) {
+        if (!$eguneratuTaula) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
 
-        // Actualiza los valores del modelo con los datos del formulario
-        $taldeEguneratuta->update([
-            'deleted_at' => now()
-        ]);
 
         // Devuelve el registro actualizado con un código de estado 200
-        return response()->json($taldeEguneratuta, 200);
+        return response()->json($eguneratuTaula, 200);
     }
 }
