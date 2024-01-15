@@ -39,7 +39,7 @@ Route::put('taldeaezabatu/{kodea}', 'App\Http\Controllers\taldea_controller@ezab
 
 Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
 
-Route::get('langilearuta/{id}', 'App\http\Controllers\langilea_controller@erakutsi');
+Route::get('langilearuta/{kodea}', 'App\http\Controllers\langilea_controller@erakutsi');
 
 Route::post('langileagorde', 'App\http\Controllers\langilea_controller@gorde');
 

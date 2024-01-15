@@ -13,8 +13,8 @@ class langilea_controller extends Controller
         return response()->json($table, 200);
     }
 
-    public function erakutsi($id){
-        $table = Langilea::where('id', $id)->first();
+    public function erakutsi($kodea){
+        $table = Langilea::where('kodea', $kodea)->get();
         return response()->json($table, 200);
     }
 
