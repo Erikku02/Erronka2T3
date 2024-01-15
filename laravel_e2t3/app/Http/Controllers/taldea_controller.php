@@ -13,7 +13,7 @@ class taldea_controller extends Controller
     }
 
     public function erakutsi($kodea){
-        $table = Taldea::where('kodea', $kodea)->first();
+        $table = Taldea::where('kodea', $kodea)->get();
         return response()->json($table, 200);
     }
 
