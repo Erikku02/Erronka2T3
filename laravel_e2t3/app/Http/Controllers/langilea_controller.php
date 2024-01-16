@@ -36,7 +36,7 @@ class langilea_controller extends Controller
     public function eguneratu(Request $aux, $id)
     {
         $datos = $aux->all();
-        $langileEguneratuta = ["izena"=>$datos["izena"], "kodea"=>$datos["kodea"], "abizenak"=>$datos["abizenak"], "updated_at" => now()];
+        $langileEguneratuta = ["id"=>$datos["id"], "izena"=>$datos["izena"], "abizenak"=>$datos["abizenak"], "updated_at" => now()];
 
         // Actualiza los valores del modelo con los datos del formulario
         $eguneratuTaula = Langilea::where('id', $id)->update($langileEguneratuta);
