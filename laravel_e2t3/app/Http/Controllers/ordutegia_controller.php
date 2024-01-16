@@ -15,15 +15,8 @@ class ordutegia_controller extends Controller
 
     public function gorde(Request $aux)
     {
-        $nuevoHorario = array(
-            'kodea' => $aux->input('kodea'),
-            'eguna' => $aux->input('eguna'),
-            'hasiera_data' => $aux->input('hasiera_data'),
-            'amaiera_data' => $aux->input('amaiera_data'),
-            'hasiera_ordua' => $aux->input('hasiera_ordua'),
-            'amaiera_ordua' => $aux->input('amaiera_ordua'),
-            'created_at' => now()
-        );
+        $datos = $aux->all();
+        $nuevoHorario = ["kodea"=>$datos["kodea"], "eguna"=>$datos["eguna"], "hasiera_data"=>$datos["hasiera_data"], "amaiera_data"=>$datos["amaiera_data"], "hasiera_ordua"=>$datos["hasiera_ordua"], "amaiera_ordua"=>$datos["amaiera_ordua"] , "created_at" => now()];
 
         // Guarda el nuevo registro en la base de datos
         Ordutegia::insert($nuevoHorario);
@@ -34,22 +27,15 @@ class ordutegia_controller extends Controller
 
     public function eguneratu(Request $aux, $id)
     {
-        $ordutegiEguneratuta = Ordutegia::where('id', $id)->first();
-        
+        $datos = $aux->all();
+        $ordutegiEguneratuta = ["id"=>$datos["id"],"kodea"=>$datos["kodea"], "eguna"=>$datos["eguna"], "hasiera_data"=>$datos["hasiera_data"], "amaiera_data"=>$datos["amaiera_data"], "hasiera_ordua"=>$datos["hasiera_ordua"], "amaiera_ordua"=>$datos["amaiera_ordua"],"updated_at" => now()];
+
+        // Actualiza los valores del modelo con los datos del formulario
+        $eguneratuTaula = Ordutegia::where('id', $id)->update($ordutegiEguneratuta);        
         // Si no se encuentra el registro, devuelve un error 404
         if (!$ordutegiEguneratuta) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
-    
-        // Actualiza los valores del modelo con los datos del formulario
-        $ordutegiEguneratuta->update([
-            'eguna' => $aux->input('eguna'),
-            'hasiera_data' => $aux->input('hasiera_data'),
-            'amaiera_data' => $aux->input('amaiera_data'),
-            'hasiera_ordua' => $aux->input('hasiera_ordua'),
-            'amaiera_ordua' => $aux->input('amaiera_ordua'),
-            'updated_at' => now()
-        ]);
 
         // Devuelve el registro actualizado con un código de estado 200
         return response()->json($ordutegiEguneratuta, 200);
@@ -57,7 +43,9 @@ class ordutegia_controller extends Controller
 
     public function ezabatu(Request $aux, $id)
     {
-        $ordutegiEzabatuta = Ordutegia::where('id', $id)->first();
+        $datos = $aux->all();
+        $ordutegiEzabatuta = ["deleted_at" => now()];
+        $eguneratuTaula = Ordutegia::where('id', $id)->update($ordutegiEzabatuta);
 
         // Si no se encuentra el registro, devuelve un error 404
         if (!$ordutegiEzabatuta) {
