@@ -91,3 +91,10 @@ Route::put('kategoriaezabatu/{id}', 'App\Http\Controllers\kategoria_controller@e
 Route::get('txandaruta', 'App\http\Controllers\txanda_controller@index');
 
 Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
+
+
+//Materiala
+
+Route::get('materialaruta', 'App\http\Controllers\materiala_controller@index');
+
+Route::post('materialagorde', 'App\http\Controllers\materiala_controller@gorde');
