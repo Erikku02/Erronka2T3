@@ -73,5 +73,9 @@ Route::put('ordutegiaeguneratu/{id}', 'App\Http\Controllers\ordutegia_controller
 
 Route::put('ordutegiaezabatu/{id}', 'App\Http\Controllers\ordutegia_controller@ezabatu');
 
-//así habría que probarlo en la URL, ejemplo:
-//http://localhost/Laravel/6_ariketa/public/api/taldearuta
+
+//Txandak
+
+Route::get('txandaruta', 'App\http\Controllers\txanda_controller@index');
+
+Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
