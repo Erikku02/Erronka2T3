@@ -74,6 +74,18 @@ Route::put('ordutegiaeguneratu/{id}', 'App\Http\Controllers\ordutegia_controller
 Route::put('ordutegiaezabatu/{id}', 'App\Http\Controllers\ordutegia_controller@ezabatu');
 
 
+
+//Kategoriak
+
+Route::get('kategoriaruta', 'App\http\Controllers\kategoria_controller@index');
+
+Route::post('kategoriagorde', 'App\http\Controllers\kategoria_controller@gorde');
+
+Route::put('kategoriaeguneratu/{id}', 'App\Http\Controllers\kategoria_controller@eguneratu');
+
+Route::put('kategoriaezabatu/{id}', 'App\Http\Controllers\kategoria_controller@ezabatu');
+
+
 //Txandak
 
 Route::get('txandaruta', 'App\http\Controllers\txanda_controller@index');
