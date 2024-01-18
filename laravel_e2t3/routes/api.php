@@ -98,3 +98,7 @@ Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
 Route::get('materialaruta', 'App\http\Controllers\materiala_controller@index');
 
 Route::post('materialagorde', 'App\http\Controllers\materiala_controller@gorde');
+
+Route::put('materialaeguneratu/{id}', 'App\Http\Controllers\materiala_controller@eguneratu');
+
+Route::put('materialaezabatu/{id}', 'App\Http\Controllers\materiala_controller@ezabatu');
