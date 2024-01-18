@@ -102,3 +102,14 @@ Route::post('materialagorde', 'App\http\Controllers\materiala_controller@gorde')
 Route::put('materialaeguneratu/{id}', 'App\Http\Controllers\materiala_controller@eguneratu');
 
 Route::put('materialaezabatu/{id}', 'App\Http\Controllers\materiala_controller@ezabatu');
+
+
+// Materiala_erabili
+
+Route::get('materialaerabiliruta', 'App\http\Controllers\materiala_erabili_controller@index');
+
+Route::post('materialaerabiligorde', 'App\http\Controllers\materiala_erabili_controller@gorde');
+
+Route::put('materialaerabilieguneratu/{id}', 'App\Http\Controllers\materiala_erabili_controller@eguneratu');
+
+Route::put('materialaerabiliezabatu/{id}', 'App\Http\Controllers\materiala_erabili_controller@ezabatu');
