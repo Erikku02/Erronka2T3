@@ -35,6 +35,7 @@ Route::put('taldeaeguneratu/{kodea}', 'App\Http\Controllers\taldea_controller@eg
 
 Route::put('taldeaezabatu/{kodea}', 'App\Http\Controllers\taldea_controller@ezabatu');
 
+
 //Langileak
 
 Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
@@ -51,18 +52,6 @@ Route::put('langileaeguneratu/{id}', 'App\Http\Controllers\langilea_controller@e
 Route::put('langileaezabatu/{id}', 'App\Http\Controllers\langilea_controller@ezabatu');
 
 
-//Langileak
-
-Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
-
-Route::get('langilearuta/{id}', 'App\http\Controllers\langilea_controller@erakutsi');
-
-Route::post('langileagorde', 'App\http\Controllers\langilea_controller@gorde');
-
-Route::put('langileaeguneratu/{id}', 'App\Http\Controllers\langilea_controller@eguneratu');
-
-Route::put('langileaezabatu/{id}', 'App\Http\Controllers\langilea_controller@ezabatu');
-
 //otra forma de hacerlo:
 //Route::get('taldearuta', [taldea_controller::class, 'index']);
 
@@ -75,7 +64,6 @@ Route::post('ordutegiagorde', 'App\http\Controllers\ordutegia_controller@gorde')
 Route::put('ordutegiaeguneratu/{id}', 'App\Http\Controllers\ordutegia_controller@eguneratu');
 
 Route::put('ordutegiaezabatu/{id}', 'App\Http\Controllers\ordutegia_controller@ezabatu');
-
 
 
 //Kategoriak
@@ -92,6 +80,8 @@ Route::put('kategoriaezabatu/{id}', 'App\Http\Controllers\kategoria_controller@e
 //Txandak
 
 Route::get('txandaruta', 'App\http\Controllers\txanda_controller@index');
+
+Route::get('txandaruta/{kodea}', 'App\http\Controllers\txanda_controller@erakutsi');
 
 Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
 

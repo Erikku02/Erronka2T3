@@ -21,4 +21,9 @@ class Taldea extends Model
     protected $guarded = [
         'kodea',
     ];
+
+    public function langileak()
+{
+    return $this->hasMany(Langilea::class, 'kodea', 'kodea');
+}
 }

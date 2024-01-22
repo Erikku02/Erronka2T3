@@ -28,15 +28,13 @@ class langilea_controller extends Controller
         $nuevoLangile = ["izena"=>$datos["izena"], "kodea"=>$datos["kodea"], "abizenak"=>$datos["abizenak"], "created_at" => now()];
         // Guarda el nuevo registro en la base de datos
         Langilea::insert($nuevoLangile);
-        $id = ["id"=>$datos["id"]];
-        echo $id;
-        //insertTxanda($id);
+
+        $idLangilea = Langilea::latest('id')->first()->id;
+        $this->insertTxanda($idLangilea);
 
         // Datu-basean ondo gorde den erantzuna 201 status idrekin itzuliko da
         return response()->json($nuevoLangile, 201);
     }
-
-
 
     public function eguneratu(Request $aux, $id)
     {
@@ -82,8 +80,10 @@ class langilea_controller extends Controller
 
     public function insertTxanda($id_langilea){
 
-        $nuevoTxanda = [["mota"=>$datos["M"], "data"=> now(), "id_langilea"=>$datos["id_langilea"], "created_at" => now()], 
-        ["mota"=>$datos["G"], "data"=> now(), "id_langilea"=>$datos["id_langilea"], "created_at" => now()]];
+        $nuevoTxanda = [
+            ["mota" => "M", "data" => now(), "id_langilea" => $id_langilea, "created_at" => now()],
+            ["mota" => "G", "data" => now(), "id_langilea" => $id_langilea, "created_at" => now()]
+        ];
 
         // Guarda el nuevo registro en la base de datos
         Txanda::insert($nuevoTxanda);

@@ -26,6 +26,30 @@ class txanda_controller extends Controller
         return response()->json($result, 200);
     }
 
+    public function erakutsi($kodea)
+    {
+        $datos = Txanda::with('langilea')
+                    ->whereHas('langilea', function ($query) use ($kodea) {
+                        $query->where('kodea', $kodea);
+                    })
+                    ->get();
+
+        $result = $datos->map(function ($txanda) {
+            return [
+                "id" => $txanda->id,
+                "mota" => $txanda->mota,
+                "data" => $txanda->data,
+                "id_langilea" => $txanda->id_langilea,
+                "izena" => $txanda->langilea->izena,
+                "abizenak" => $txanda->langilea->abizenak,
+                "kodea" => $txanda->langilea->kodea,
+                "created_at" => now(),
+            ];
+        });
+        return response()->json($result, 200);
+    }
+
+
     public function gorde(Request $aux)
     {
         $datos=$aux->all();
