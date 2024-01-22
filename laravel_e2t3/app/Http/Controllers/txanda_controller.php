@@ -54,7 +54,7 @@ class txanda_controller extends Controller
     {
         $datos=$aux->all();
 
-        $nuevoTxanda = ["mota"=>$datos["mota"], "data"=>$datos["data"], "id_langilea"=>$datos["id_langilea"], "created_at" => now()];
+        $nuevoTxanda = ["mota"=>$datos["mota"], "data"=> now(), "id_langilea"=>$datos["id_langilea"], "created_at" => now()];
         // Guarda el nuevo registro en la base de datos
         Txanda::insert($nuevoTxanda);
 
