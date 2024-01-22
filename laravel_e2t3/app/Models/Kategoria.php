@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kategoria extends Model
 {
-    
+
     protected $table = 'kategoria';
 
     protected $primaryKey = 'id';
@@ -15,10 +15,17 @@ class Kategoria extends Model
     protected $keyType = 'int';
 
     protected $fillable = [
-        'izena', 'updated_at', 'deleted_at', 
+        'izena',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [
         'id',
     ];
+
+    public function produktua()
+    {
+        return $this->hasMany(Produktua::class, 'id_kategoria');
+    }
 }
