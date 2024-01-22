@@ -17,6 +17,6 @@ class Txanda extends Model
 
     public function langilea()
     {
-        return $this->belongsTo(Langilea::class, 'id_langilea', 'id');
+        return $this->belongsTo(Langilea::class, 'id_langilea');
     }
 }

@@ -41,6 +41,9 @@ Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
 
 Route::get('langilearuta/{kodea}', 'App\http\Controllers\langilea_controller@erakutsi');
 
+Route::get('langilearutaTxanda', 'App\http\Controllers\langilea_controller@mostrarTablaTrabajadores');
+
+
 Route::post('langileagorde', 'App\http\Controllers\langilea_controller@gorde');
 
 Route::put('langileaeguneratu/{id}', 'App\Http\Controllers\langilea_controller@eguneratu');

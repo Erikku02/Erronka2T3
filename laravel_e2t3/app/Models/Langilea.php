@@ -18,4 +18,8 @@ class Langilea extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function txanda(){
+        return $this->hasMany(Txanda::class, 'id_langilea');
+    }
 }
