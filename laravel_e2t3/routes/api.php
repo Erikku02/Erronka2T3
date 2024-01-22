@@ -84,5 +84,34 @@ Route::put('kategoriaeguneratu/{id}', 'App\Http\Controllers\kategoria_controller
 
 Route::put('kategoriaezabatu/{id}', 'App\Http\Controllers\kategoria_controller@ezabatu');
 
+//Produktuak
+
+Route::get('produktuaruta', 'App\http\Controllers\produktua_controller@index');
+
+Route::post('produktuagorde', 'App\http\Controllers\produktua_controller@gorde');
+
+Route::put('produktuaeguneratu/{id}', 'App\Http\Controllers\produktua_controller@eguneratu');
+
+Route::put('produktuaezabatu/{id}', 'App\Http\Controllers\produktua_controller@ezabatu');
+
+//Tratamenduak
+
+Route::get('tratamenduaruta', 'App\http\Controllers\tratamendua_controller@index');
+
+Route::post('tratamenduagorde', 'App\http\Controllers\tratamendua_controller@gorde');
+
+Route::put('tratamenduaeguneratu/{id}', 'App\Http\Controllers\tratamendua_controller@eguneratu');
+
+Route::put('tratamenduaezabatu/{id}', 'App\Http\Controllers\tratamendua_controller@ezabatu');
+
+//Bezero_fitxak
+
+Route::get('bezero_fixaruta', 'App\http\Controllers\bezero_fitxa_controller@index');
+
+Route::post('bezero_fixagorde', 'App\http\Controllers\bezero_fitxa_controller@gorde');
+
+Route::put('bezero_fixaeguneratu/{id}', 'App\Http\Controllers\bezero_fitxa_controller@eguneratu');
+
+Route::put('bezero_fixaezabatu/{id}', 'App\Http\Controllers\bezero_fitxa_controller@ezabatu');
 //así habría que probarlo en la URL, ejemplo:
 //http://localhost/Laravel/6_ariketa/public/api/taldearuta
