@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Langilea;
+use App\Models\Txanda;
 
 class langilea_controller extends Controller
 {
@@ -23,9 +24,13 @@ class langilea_controller extends Controller
     public function gorde(Request $aux)
     {
         $datos = $aux->all();
+
         $nuevoLangile = ["izena"=>$datos["izena"], "kodea"=>$datos["kodea"], "abizenak"=>$datos["abizenak"], "created_at" => now()];
         // Guarda el nuevo registro en la base de datos
         Langilea::insert($nuevoLangile);
+        $id = ["id"=>$datos["id"]];
+        echo $id;
+        //insertTxanda($id);
 
         // Datu-basean ondo gorde den erantzuna 201 status idrekin itzuliko da
         return response()->json($nuevoLangile, 201);
@@ -66,5 +71,23 @@ class langilea_controller extends Controller
 
         // Devuelve el registro actualizado con un código de estado 200
         return response()->json($eguneratuTaula, 200);
+    }
+
+    public function mostrarTablaTrabajadores()
+    {
+        $langileak = Langilea::with('txanda')->get();
+
+        return response()->json(['langilea' => $langileak]);
+    }
+
+    public function insertTxanda($id_langilea){
+
+        $nuevoTxanda = [["mota"=>$datos["M"], "data"=> now(), "id_langilea"=>$datos["id_langilea"], "created_at" => now()], 
+        ["mota"=>$datos["G"], "data"=> now(), "id_langilea"=>$datos["id_langilea"], "created_at" => now()]];
+
+        // Guarda el nuevo registro en la base de datos
+        Txanda::insert($nuevoTxanda);
+
+        return response()->json($nuevoTxanda, 201);
     }
 }

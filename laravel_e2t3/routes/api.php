@@ -41,24 +41,15 @@ Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
 
 Route::get('langilearuta/{kodea}', 'App\http\Controllers\langilea_controller@erakutsi');
 
+Route::get('langilearutaTxanda', 'App\http\Controllers\langilea_controller@mostrarTablaTrabajadores');
+
+
 Route::post('langileagorde', 'App\http\Controllers\langilea_controller@gorde');
 
 Route::put('langileaeguneratu/{id}', 'App\Http\Controllers\langilea_controller@eguneratu');
 
 Route::put('langileaezabatu/{id}', 'App\Http\Controllers\langilea_controller@ezabatu');
 
-
-//Langileak
-
-Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
-
-Route::get('langilearuta/{id}', 'App\http\Controllers\langilea_controller@erakutsi');
-
-Route::post('langileagorde', 'App\http\Controllers\langilea_controller@gorde');
-
-Route::put('langileaeguneratu/{id}', 'App\Http\Controllers\langilea_controller@eguneratu');
-
-Route::put('langileaezabatu/{id}', 'App\Http\Controllers\langilea_controller@ezabatu');
 
 //otra forma de hacerlo:
 //Route::get('taldearuta', [taldea_controller::class, 'index']);
@@ -74,6 +65,7 @@ Route::put('ordutegiaeguneratu/{id}', 'App\Http\Controllers\ordutegia_controller
 Route::put('ordutegiaezabatu/{id}', 'App\Http\Controllers\ordutegia_controller@ezabatu');
 
 
+
 //Kategoriak
 
 Route::get('kategoriaruta', 'App\http\Controllers\kategoria_controller@index');
@@ -83,6 +75,37 @@ Route::post('kategoriagorde', 'App\http\Controllers\kategoria_controller@gorde')
 Route::put('kategoriaeguneratu/{id}', 'App\Http\Controllers\kategoria_controller@eguneratu');
 
 Route::put('kategoriaezabatu/{id}', 'App\Http\Controllers\kategoria_controller@ezabatu');
+
+//así habría que probarlo en la URL, ejemplo:
+//http://localhost/Laravel/6_ariketa/public/api/taldearuta
+
+//Txandak
+
+Route::get('txandaruta', 'App\http\Controllers\txanda_controller@index');
+
+Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
+
+
+//Materiala
+
+Route::get('materialaruta', 'App\http\Controllers\materiala_controller@index');
+
+Route::post('materialagorde', 'App\http\Controllers\materiala_controller@gorde');
+
+Route::put('materialaeguneratu/{id}', 'App\Http\Controllers\materiala_controller@eguneratu');
+
+Route::put('materialaezabatu/{id}', 'App\Http\Controllers\materiala_controller@ezabatu');
+
+
+// Materiala_erabili
+
+Route::get('materialaerabiliruta', 'App\http\Controllers\materiala_erabili_controller@index');
+
+Route::post('materialaerabiligorde', 'App\http\Controllers\materiala_erabili_controller@gorde');
+
+Route::put('materialaerabilieguneratu/{id}', 'App\Http\Controllers\materiala_erabili_controller@eguneratu');
+
+Route::put('materialaerabiliezabatu/{id}', 'App\Http\Controllers\materiala_erabili_controller@ezabatu');
 
 //Produktuak
 

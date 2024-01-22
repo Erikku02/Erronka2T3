@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Langilea extends Model
+class Materiala_erabili extends Model
 {
-    protected $table = 'langilea';
+    protected $table = 'materiala_erabili';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'izena', 'kodea','abizenak', 'updated_at', 'deleted_at', 
+        'id_material',
+        'id_langilea',
+        'hasiera_data',
+        'amaiera_data',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [
         'id',
     ];
-
-    public function txanda(){
-        return $this->hasMany(Txanda::class, 'id_langilea');
-    }
 }
