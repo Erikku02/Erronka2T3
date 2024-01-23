@@ -35,6 +35,7 @@ Route::put('taldeaeguneratu/{kodea}', 'App\Http\Controllers\taldea_controller@eg
 
 Route::put('taldeaezabatu/{kodea}', 'App\Http\Controllers\taldea_controller@ezabatu');
 
+
 //Langileak
 
 Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
@@ -65,7 +66,6 @@ Route::put('ordutegiaeguneratu/{id}', 'App\Http\Controllers\ordutegia_controller
 Route::put('ordutegiaezabatu/{id}', 'App\Http\Controllers\ordutegia_controller@ezabatu');
 
 
-
 //Kategoriak
 
 Route::get('kategoriaruta', 'App\http\Controllers\kategoria_controller@index');
@@ -82,6 +82,8 @@ Route::put('kategoriaezabatu/{id}', 'App\Http\Controllers\kategoria_controller@e
 //Txandak
 
 Route::get('txandaruta', 'App\http\Controllers\txanda_controller@index');
+
+Route::get('txandaruta/{kodea}', 'App\http\Controllers\txanda_controller@erakutsi');
 
 Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
 

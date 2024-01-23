@@ -61,9 +61,25 @@ class taldea_controller extends Controller
         if (!$eguneratuTaula) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
-
+                
+        $this->ezabatuLangile($kodea);
 
         // Devuelve el registro actualizado con un código de estado 200
         return response()->json($eguneratuTaula, 200);
+    }
+
+    public function ezabatuLangile($kodea)
+    {
+        $taldea = Taldea::where('kodea', $kodea)->first();
+
+    if (!$taldea) {
+        return response()->json(['error' => 'Taldea no encontrado'], 404);
+    }
+
+    // Actualiza la relación con la fecha de eliminación
+    $taldea->langileak()->update(['deleted_at' => now()]);
+
+    // Devuelve el resultado con un código de estado 200
+    return response()->json(['success' => 'Registros eliminados correctamente'], 200);
     }
 }
