@@ -87,6 +87,12 @@ Route::get('txandaruta/{kodea}', 'App\http\Controllers\txanda_controller@erakuts
 
 Route::post('txandagorde', 'App\http\Controllers\txanda_controller@gorde');
 
+Route::get('txandaMostradorea/{kodea}', 'App\http\Controllers\txanda_controller@azkenMostradorea');
+
+Route::get('txandaGarbiketa/{kodea}', 'App\http\Controllers\txanda_controller@azkenBiGarbiketa');
+
+
+
 
 //Materiala
 
