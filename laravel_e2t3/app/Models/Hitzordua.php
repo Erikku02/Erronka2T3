@@ -32,4 +32,9 @@ class Hitzordua extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function langilea()
+    {
+        return $this->belongsTo(Langilea::class, 'id_langilea');
+    }
 }

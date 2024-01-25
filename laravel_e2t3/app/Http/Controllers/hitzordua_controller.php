@@ -7,10 +7,39 @@ use App\Models\Hitzordua;
 
 class hitzordua_controller extends Controller
 {
-    public function index()
+    /* public function index()
     {
         $table = Hitzordua::all();
         return response()->json($table, 200);
+    } */
+
+    public function index()
+    {
+        $datos = Hitzordua::with('langilea')->whereHas('langilea', function ($query) {
+            $query->where('langilea.deleted_at', null);
+        })->get();
+
+        $result = $datos->map(function ($hitzordua) {
+            return [
+                'id' => $hitzordua->id,
+                'eserlekua' => $hitzordua->eserlekua,
+                'data' => $hitzordua->data,
+                'hasiera_ordua' => $hitzordua->hasiera_ordua,
+                'amaiera_ordua' => $hitzordua->amaiera_ordua,
+                'hasiera_ordua_erreala' => $hitzordua->hasiera_ordua_erreala,
+                'amaiera_ordua_erreala' => $hitzordua->amaiera_ordua_erreala,
+                'izena' => $hitzordua->izena,
+                'telefonoa' => $hitzordua->telefonoa,
+                'deskribapena' => $hitzordua->deskribapena,
+                'etxekoa' => $hitzordua->etxekoa,
+                'prezio_totala' => $hitzordua->prezio_totala,
+                'id_langilea' => $hitzordua->id_langilea,
+                'l_izena' => $hitzordua->langilea->izena,
+                'created_at' => now(),
+            ];
+        });
+
+        return response()->json($result, 200);
     }
 
     public function gorde(Request $aux)
@@ -105,13 +134,13 @@ class hitzordua_controller extends Controller
     {
         $datos = $aux->all();
         $ezabatuHitzordua = ['deleted_at' => now()];
-        
+
         // Actualiza los valores del modelo con los datos del formulario
         $eguneratuTaula = Hitzordua::where('id', $id)->update($ezabatuHitzordua);
 
         // Si no se encuentra el registro, devuelve un error 404
         if (!$ezabatuHitzordua) {
-            return response()->json(['error'=> 'Registro no encontrado'], 404);
+            return response()->json(['error' => 'Registro no encontrado'], 404);
         }
 
         return response()->json($eguneratuTaula, 200);
