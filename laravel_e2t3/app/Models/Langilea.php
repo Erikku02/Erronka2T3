@@ -12,14 +12,24 @@ class Langilea extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'izena', 'kodea','abizenak', 'updated_at', 'deleted_at', 
+        'izena',
+        'kodea',
+        'abizenak',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $guarded = [
         'id',
     ];
 
-    public function txanda(){
+    public function txanda()
+    {
         return $this->hasMany(Txanda::class, 'id_langilea');
+    }
+
+    public function hitzordua()
+    {
+        return $this->hasMany(Hitzordua::class, 'id_langilea');
     }
 }

@@ -157,3 +157,14 @@ Route::put('kolore_histezabatu/{id}', 'App\Http\Controllers\kolore_historiala_co
 
 //así habría que probarlo en la URL, ejemplo:
 //http://localhost/Laravel/6_ariketa/public/api/taldearuta
+
+
+// Hitzordua
+
+Route::get('hitzorduaruta', 'App\http\Controllers\hitzordua_controller@index');
+
+Route::post('hitzorduagorde', 'App\http\Controllers\hitzordua_controller@gorde');
+
+Route::put('hitzorduaeguneratu/{id}', 'App\Http\Controllers\hitzordua_controller@eguneratu');
+
+Route::put('hitzorduaezabatu/{id}', 'App\Http\Controllers\hitzordua_controller@ezabatu');
