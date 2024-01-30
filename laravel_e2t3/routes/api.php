@@ -144,5 +144,16 @@ Route::post('bezero_fixagorde', 'App\http\Controllers\bezero_fitxa_controller@go
 Route::put('bezero_fixaeguneratu/{id}', 'App\Http\Controllers\bezero_fitxa_controller@eguneratu');
 
 Route::put('bezero_fixaezabatu/{id}', 'App\Http\Controllers\bezero_fitxa_controller@ezabatu');
+
+//Kolore_historiala
+
+Route::get('kolore_histruta', 'App\http\Controllers\kolore_historiala_controller@index');
+
+Route::post('kolore_histgorde', 'App\http\Controllers\kolore_historiala_controller@gorde');
+
+Route::put('kolore_histeguneratu/{id}', 'App\Http\Controllers\kolore_historiala_controller@eguneratu');
+
+Route::put('kolore_histezabatu/{id}', 'App\Http\Controllers\kolore_historiala_controller@ezabatu');
+
 //así habría que probarlo en la URL, ejemplo:
 //http://localhost/Laravel/6_ariketa/public/api/taldearuta
