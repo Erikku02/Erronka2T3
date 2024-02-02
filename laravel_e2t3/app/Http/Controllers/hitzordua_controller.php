@@ -15,11 +15,51 @@ class hitzordua_controller extends Controller
 
     public function index()
     {
-        $datos = Hitzordua::with('langilea')->whereHas('langilea', function ($query) {
-            $query->where('langilea.deleted_at', null);
-        })->get();
+        $datos = Hitzordua::whereNull('deleted_at')
+            ->with('langilea')->get();
+
+
 
         $result = $datos->map(function ($hitzordua) {
+            // Comprobar que langilea no es null antes de acceder a sus datos
+            $langilea = $hitzordua->langilea;
+
+            // Convertir las cadenas a objetos DateTime
+            $hasieraOrd = \DateTime::createFromFormat('H:i:s', $hitzordua->hasiera_ordua);
+            $amaieraOrd = \DateTime::createFromFormat('H:i:s', $hitzordua->amaiera_ordua);
+
+            /// Utilizar optional para manejar valores nulos
+            $hasieraOrdErreala = optional(\DateTime::createFromFormat('H:i:s', $hitzordua->hasiera_ordua_erreala));
+            $amaieraOrdErreala = optional(\DateTime::createFromFormat('H:i:s', $hitzordua->amaiera_ordua_erreala));
+
+            // Convertir DateTime a Carbon
+            $hasieraOrd = \Carbon\Carbon::instance($hasieraOrd);
+            $amaieraOrd = \Carbon\Carbon::instance($amaieraOrd);
+
+            // Verificar que las fechas se hayan creado correctamente
+            if (!$hasieraOrd || !$amaieraOrd) {
+                // Manejar el error o devolver un valor predeterminado
+                return null; // Puedes ajustar esto según tus necesidades
+            }
+
+            // Calcular las duraciones solo si las fechas no son nulas
+            $duracion_aprox = $hasieraOrd->diffInMinutes($amaieraOrd);
+
+            // Verificar si hasiera_ordua_erreala y amaiera_ordua_erreala no son nulos
+            if ($hasieraOrdErreala->value && $amaieraOrdErreala->value) {
+                $hasieraOrdErreala = \Carbon\Carbon::instance($hasieraOrdErreala);
+                $amaieraOrdErreala = \Carbon\Carbon::instance($amaieraOrdErreala);
+                $duracion_real = $hasieraOrdErreala->diffInMinutes($amaieraOrdErreala);
+            } else {
+                $duracion_real = null;
+            }
+
+            /*  // Convertir DateTime a Carbon
+            $hasieraOrd = \Carbon\Carbon::instance($hasieraOrd);
+            $amaieraOrd = \Carbon\Carbon::instance($amaieraOrd);
+             // $hasieraOrdErreala = \Carbon\Carbon::instance($hasieraOrdErreala);
+             // $amaieraOrdErreala = \Carbon\Carbon::instance($amaieraOrdErreala); */
+
             return [
                 'id' => $hitzordua->id,
                 'eserlekua' => $hitzordua->eserlekua,
@@ -28,13 +68,15 @@ class hitzordua_controller extends Controller
                 'amaiera_ordua' => $hitzordua->amaiera_ordua,
                 'hasiera_ordua_erreala' => $hitzordua->hasiera_ordua_erreala,
                 'amaiera_ordua_erreala' => $hitzordua->amaiera_ordua_erreala,
+                'duracion_aprox' => $duracion_aprox,
+                'duracion_real' => $duracion_real,
                 'izena' => $hitzordua->izena,
                 'telefonoa' => $hitzordua->telefonoa,
                 'deskribapena' => $hitzordua->deskribapena,
                 'etxekoa' => $hitzordua->etxekoa,
                 'prezio_totala' => $hitzordua->prezio_totala,
                 'id_langilea' => $hitzordua->id_langilea,
-                'l_izena' => $hitzordua->langilea->izena,
+                /* 'l_izena' => $hitzordua->langilea->izena, */
                 'created_at' => now(),
             ];
         });

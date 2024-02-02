@@ -33,6 +33,13 @@ class Hitzordua extends Model
         'id'
     ];
 
+    protected $dates = [
+        'hasiera_ordua',
+        'amaiera_ordua',
+        'hasiera_ordua_erreala',
+        'amaiera_ordua_erreala',
+    ];
+
     public function langilea()
     {
         return $this->belongsTo(Langilea::class, 'id_langilea');
