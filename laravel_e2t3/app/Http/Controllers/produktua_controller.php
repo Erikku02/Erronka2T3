@@ -30,6 +30,18 @@ class produktua_controller extends Controller
         return response()->json($result, 200);
     }
 
+    public function ateraMarka()
+    {
+        $datos = Produktua::with('kategoria')->get();
+        $result = $datos->map(function ($produktua) {
+            return [
+                "id_kategoria" => $produktua->id_kategoria,
+                "marka" => $produktua->marka,
+            ];
+        });
+        return response()->json($result, 200);
+    }
+
     public function erakutsi($id)
     {
         $table = Produktua::where('id', $id)->first();

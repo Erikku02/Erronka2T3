@@ -119,11 +119,25 @@ Route::put('materialaerabiliezabatu/{id}', 'App\Http\Controllers\materiala_erabi
 
 Route::get('produktuaruta', 'App\http\Controllers\produktua_controller@index');
 
+Route::get('markaruta', 'App\http\Controllers\produktua_controller@ateraMarka');
+
 Route::post('produktuagorde', 'App\http\Controllers\produktua_controller@gorde');
 
 Route::put('produktuaeguneratu/{id}', 'App\Http\Controllers\produktua_controller@eguneratu');
 
 Route::put('produktuaezabatu/{id}', 'App\Http\Controllers\produktua_controller@ezabatu');
+
+//Produktu-Mugimenduak
+
+Route::get('produktumugimenduaruta', 'App\http\Controllers\produktu_mugimendua_controller@index');
+
+// Route::get('markaruta', 'App\http\Controllers\produktua_controller@ateraMarka');
+
+Route::post('produktumugimenduagorde', 'App\http\Controllers\produktu_mugimendua_controller@gorde');
+
+// Route::put('produktuaeguneratu/{id}', 'App\Http\Controllers\produktua_controller@eguneratu');
+
+// Route::put('produktuaezabatu/{id}', 'App\Http\Controllers\produktua_controller@ezabatu');
 
 //Tratamenduak
 
