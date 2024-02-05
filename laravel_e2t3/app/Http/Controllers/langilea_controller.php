@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Langilea;
 use App\Models\Txanda;
+use App\Models\Hitzordua;
 
 class langilea_controller extends Controller
 {
