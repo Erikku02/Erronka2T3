@@ -33,7 +33,7 @@ class hitzordua_controller extends Controller
                 'etxekoa' => $hitzordua->etxekoa,
                 'prezio_totala' => $hitzordua->prezio_totala,
                 'id_langilea' => $hitzordua->id_langilea,
-                'l_izena' => $hitzordua->langilea,
+                'l_izena' => $hitzordua->langilea ? $hitzordua->langilea->izena : null,
                 'created_at' => now(),
             ];
         });
