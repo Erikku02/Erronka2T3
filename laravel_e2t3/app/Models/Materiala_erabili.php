@@ -12,7 +12,7 @@ class Materiala_erabili extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id_material',
+        'id_materiala',
         'id_langilea',
         'hasiera_data',
         'amaiera_data',
@@ -23,4 +23,15 @@ class Materiala_erabili extends Model
     protected $guarded = [
         'id',
     ];
+    
+    public function materiala()
+    {
+        return $this->belongsTo(Materiala::class, 'id_materiala');
+    }
+
+    public function langilea()
+    {
+        return $this->belongsTo(Langilea::class, 'id_langilea');
+    }
+    
 }

@@ -8,69 +8,79 @@ use Illuminate\Http\Request;
 
 class materiala_erabili_controller extends Controller
 {
+
     public function index()
     {
-        $table = Materiala_erabili::all();
-        return response()->json($table, 200);
+        $datos = Materiala_erabili::with('langilea')->get();
+        $result = $datos->map(function ($materialaErabili) {
+            return [
+                "id" => $materialaErabili->id,
+                "langilea" => [
+                    "id" => $materialaErabili->langilea->id,
+                    "izena" => $materialaErabili->langilea->izena,
+                ],
+                "materiala" => [
+                    "id" => $materialaErabili->materiala->id,
+                    "etiketa" => $materialaErabili->materiala->etiketa,
+                ],
+                "hasiera_data" => $materialaErabili->hasiera_data,
+                "amaiera_data" => $materialaErabili->amaiera_data
+            ];
+        });
+        return response()->json($result, 200);
     }
 
 
     public function gorde(Request $aux)
     {
-        $datos = $aux->all();
-        $nuevoMaterialaErabili = ["id_materiala" => $datos["id_materiala"], "id_langilea" => $datos["id_langilea"], "hasiera_data" => $datos["hasiera_data"], "amaiera_data" => $datos["amaiera_data"], "created_at" => now()];
+        // Obtén el conjunto de datos
+        $dato = $aux->all();
 
-        // Guarda el nuevo registro en la base de datos
-        Materiala_erabili::insert($nuevoMaterialaErabili);
+        // Verifica si faltan datos necesarios
+        if (
+            isset($dato["id_materiala"]) &&
+            isset($dato["id_langilea"])
+        ) {
+            $nuevoMaterialaErabili = [
+                "id_materiala" => $dato["id_materiala"],
+                "id_langilea" => $dato["id_langilea"],
+                "hasiera_data" => now(),
+                "created_at" => now()
+            ];
 
-        // Datu-basean ondo gorde den erantzuna 201 status idrekin itzuliko da
-        return response()->json($nuevoMaterialaErabili, 201);
-    }
+            // Guarda el nuevo registro en la base de datos
+            $materialaErabili = Materiala_erabili::create($nuevoMaterialaErabili);
 
-    public function eguneratu(Request $aux, $id)
-    {
-        $datos = $aux->all();
-        $materialaErabiliEguneratuta = ["id" => $datos["id"], "id_materiala" => $datos["id_materiala"], "id_langilea" => $datos["id_langilea"], "hasiera_data" => $datos["hasiera_data"], "amaiera_data" => $datos["amaiera_data"], "updated_at" => now()];
-
-        // Actualiza los valores del modelo con los datos del formulario
-        $eguneratuTaula = Materiala_erabili::where("id", $id)->update($materialaErabiliEguneratuta);
-
-        // Si no se encuentra el registro, devuelve un error 404
-        if (!$materialaErabiliEguneratuta) {
-            return response()->json(['error' => 'Registro no encontrado'], 404);
+            // Datos guardados correctamente, devuelve una respuesta 201
+            return response()->json(['message' => 'Datos guardados correctamente'], 201);
+        } else {
+            // Si faltan datos necesarios, devuelve un error 400 Bad Request
+            return response()->json(['error' => 'Faltan datos necesarios'], 400);
         }
-
-        // Devuelve el registro actualizado con un código de estado 200
-        return response()->json($eguneratuTaula, 200);
     }
+
 
     public function ezabatu(Request $aux, $id)
     {
-        $datos = $aux->all();
-        $materialaErabiliEguneratuta = ["deleted_at" => now()];
+        // Obtén el conjunto de datos
+        $dato = $aux->all();
 
-        // Actualiza los valores del modelo con los datos del formulario
-        $eguneratuTaula = Materiala_erabili::where('id', $id)->update($materialaErabiliEguneratuta);
+        // Obtén el registro existente por su ID
+        $materialaErabili = Materiala_erabili::find($id);
 
-        // Si no se encuentra el registro, devuelve un error 404
-        if (!$eguneratuTaula) {
+        // Verifica si se encontró el registro
+        if (!$materialaErabili) {
+            // Si no se encuentra el registro, devuelve un error 404 Not Found
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
 
-        // Devuelve el registro actualizado con un codigo de estado 200
-        return response()->json($eguneratuTaula, 200);
+        // Actualiza los campos existentes y agrega amaiera_data
+        $materialaErabili->update([
+            "amaiera_data" => now(),
+            "updated_at" => now(), 
+            "deleted_at" => now() 
+        ]);
+        // Datos actualizados correctamente, devuelve una respuesta 200
+        return response()->json(['message' => 'Datos actualizados correctamente'], 200);
     }
 }
-
-
-
-// {
-//     "id": 2,
-//     "id_materiala": 4,
-//     "id_langilea": 1,
-//     "hasiera_data": "2024-01-03 13:24:25",
-//     "amaiera_data": "2024-01-25 13:24:25",
-//     "created_at": "2024-01-18T13:24:34.000000Z",
-//     "updated_at": "2024-01-18T13:24:34.000000Z",
-//     "deleted_at": null
-// }

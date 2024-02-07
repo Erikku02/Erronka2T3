@@ -182,3 +182,12 @@ Route::post('hitzorduagorde', 'App\http\Controllers\hitzordua_controller@gorde')
 Route::put('hitzorduaeguneratu/{id}', 'App\Http\Controllers\hitzordua_controller@eguneratu');
 
 Route::put('hitzorduaezabatu/{id}', 'App\Http\Controllers\hitzordua_controller@ezabatu');
+
+
+//Materiala erabili
+
+Route::get('materialaerabiliruta', 'App\http\Controllers\materiala_erabili_controller@index');
+
+Route::post('materialaerabiligorde', 'App\http\Controllers\materiala_erabili_controller@gorde');
+
+Route::put('materialaerabiliezabatu/{id}', 'App\Http\Controllers\materiala_erabili_controller@ezabatu');

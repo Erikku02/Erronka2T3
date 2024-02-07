@@ -33,25 +33,6 @@ class taldea_controller extends Controller
         return response()->json($nuevoTalde, 201);
     }
 
-
-
-    /* ORIGINAL QUE FUNCIONA
-    public function eguneratu(Request $aux, $kodea)
-    {
-        $datos = $aux->all();
-        $taldeEguneratuta = ["kodea" => $datos["kodea"], "izena" => $datos["izena"], "updated_at" => now()];
-        // Actualiza los valores del modelo con los datos del formulario
-        $eguneratuTaula = Taldea::where('kodea', $kodea)->update($taldeEguneratuta);
-
-        // Si no se encuentra el registro, devuelve un error 404
-        if (!$eguneratuTaula) {
-            return response()->json(['error' => 'Registro no encontrado'], 404);
-        }
-
-        // Devuelve el registro actualizado con un código de estado 200
-        return response()->json($eguneratuTaula, 200);
-    }*/
-
     public function eguneratu(Request $aux, $kodea)
     {
         $datos = $aux->all;
@@ -94,6 +75,7 @@ class taldea_controller extends Controller
         return response()->json($eguneratuTaula, 200);
     }
 
+    
     public function ezabatuLangile($kodea)
     {
         $taldea = Taldea::where('kodea', $kodea)->first();
