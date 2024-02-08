@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Hitzordua;
+use App\Models\Hitzordua_Model;
 
 class hitzorduac_controller extends Controller
 {
     public function index()
     {
-        $datos = Hitzordua::whereNull('deleted_at')
+        $datos = Hitzordua_Model::whereNull('deleted_at')
             ->with('langilea')->get();
 
         $result = $datos->map(function ($hitzordua) {
@@ -55,7 +55,7 @@ class hitzorduac_controller extends Controller
         ];
 
         // Guarda el nuevo registro en la base de datos
-        Hitzordua::insert($nuevoHitzordua);
+        Hitzordua_Model::insert($nuevoHitzordua);
 
         // Datu-basean ondo gorde den erantzuna 201 status kodearekin itzuliko da
         return response()->json($nuevoHitzordua, 201);
@@ -100,7 +100,7 @@ class hitzorduac_controller extends Controller
         ];
 
         // Actualiza los valores del modelo con los datos del formulario
-        $eguneratuTaula = Hitzordua::where('id', $id)->update($hitzorduaEguneratuta);
+        $eguneratuTaula = Hitzordua_Model::where('id', $id)->update($hitzorduaEguneratuta);
 
         if (!$eguneratuTaula) {
             return response()->json(['error' => 'registro no encontrado'], 404);
@@ -134,7 +134,7 @@ class hitzorduac_controller extends Controller
         $ezabatuHitzordua = ['deleted_at' => now()];
 
         // Actualiza los valores del modelo con los datos del formulario
-        $eguneratuTaula = Hitzordua::where('id', $id)->update($ezabatuHitzordua);
+        $eguneratuTaula = Hitzordua_Model::where('id', $id)->update($ezabatuHitzordua);
 
         // Si no se encuentra el registro, devuelve un error 404
         if (!$ezabatuHitzordua) {

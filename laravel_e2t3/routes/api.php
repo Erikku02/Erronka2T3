@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\taldea_controller;
 use App\Http\Controllers\langilea_controller;
 use App\Http\Controllers\ordutegia_controller;
+use App\Http\Controllers\hitzorduac_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -177,11 +178,11 @@ Route::put('kolore_histezabatu/{id}', 'App\Http\Controllers\kolore_historiala_co
 
 Route::get('hitzorduaruta', 'App\http\Controllers\hitzorduac_controller@index');
 
-Route::post('hitzorduagorde', 'App\http\Controllers\hitzordua_controller@gorde');
+Route::post('hitzorduagorde', 'App\http\Controllers\hitzorduac_controller@gorde');
 
-Route::put('hitzorduaeguneratu/{id}', 'App\Http\Controllers\hitzordua_controller@eguneratu');
+Route::put('hitzorduaeguneratu/{id}', 'App\Http\Controllers\hitzorduac_controller@eguneratu');
 
-Route::put('hitzorduaezabatu/{id}', 'App\Http\Controllers\hitzordua_controller@ezabatu');
+Route::put('hitzorduaezabatu/{id}', 'App\Http\Controllers\hitzorduac_controller@ezabatu');
 
 
 //Materiala erabili
