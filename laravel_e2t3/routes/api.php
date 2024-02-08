@@ -28,7 +28,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Taldeak
 
-Route::get('taldearuta', 'App\http\Controllers\taldeac_controller@index');
+// Route::get('taldearuta', 'App\http\Controllers\taldeac_controller@index');
+Route::get('taldearuta', [taldeac_controller::class, '@index']);
+
 
 Route::get('taldearuta/{kodea}', 'App\http\Controllers\taldeac_controller@erakutsi');
 
