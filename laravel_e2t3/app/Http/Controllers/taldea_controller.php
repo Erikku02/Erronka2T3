@@ -35,7 +35,7 @@ class taldea_controller extends Controller
 
     public function eguneratu(Request $aux, $kodea)
     {
-        $datos = $aux->all;
+        $datos = $aux->all();
 
         // Verifica si se proporciona un nuevo nombre y actualiza el array en consecuencia
         $taldeEguneratuta = [
