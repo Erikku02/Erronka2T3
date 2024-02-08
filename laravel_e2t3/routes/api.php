@@ -7,6 +7,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\taldea_controller;
 use App\Http\Controllers\langilea_controller;
 use App\Http\Controllers\ordutegia_controller;
+use App\Http\Controllers\kategoria_controller;
+use App\Http\Controllers\txanda_controller;
+use App\Http\Controllers\materiala_controller;
+use App\Http\Controllers\materiala_erabili_controller;
+use App\Http\Controllers\produktua_controller;
+use App\Http\Controllers\produktu_mugimendua_controller;
+use App\Http\Controllers\tratamendua_controller;
+use App\Http\Controllers\bezero_fitxa_controller;
+use App\Http\Controllers\kolore_historiala_controller;
+use App\Http\Controllers\hitzordua_controller;
 
 
 /*
