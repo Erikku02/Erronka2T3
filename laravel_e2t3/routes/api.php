@@ -43,7 +43,9 @@ Route::put('taldeaezabatu/{kodea}', 'App\Http\Controllers\taldeac_controller@eza
 
 //Langileak
 
-Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
+// Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');
+
+Route::get('langilearuta', [langilea_controller::class, 'index']);
 
 Route::get('langilearuta/{kodea}', 'App\http\Controllers\langilea_controller@erakutsi');
 
