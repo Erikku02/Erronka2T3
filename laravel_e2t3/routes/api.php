@@ -175,7 +175,7 @@ Route::put('kolore_histezabatu/{id}', 'App\Http\Controllers\kolore_historiala_co
 
 // Hitzordua
 
-Route::get('hitzorduaruta', 'App\http\Controllers\hitzordua_controller@index');
+Route::get('hitzorduaruta', 'App\http\Controllers\hitzorduac_controller@index');
 
 Route::post('hitzorduagorde', 'App\http\Controllers\hitzordua_controller@gorde');
 
