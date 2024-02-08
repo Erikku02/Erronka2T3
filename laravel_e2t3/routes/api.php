@@ -8,6 +8,8 @@ use App\Http\Controllers\taldea_controller;
 use App\Http\Controllers\langilea_controller;
 use App\Http\Controllers\ordutegia_controller;
 use App\Http\Controllers\hitzorduac_controller;
+use App\Http\Controllers\taldeac_controller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +28,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Taldeak
 
-Route::get('taldearuta', 'App\http\Controllers\taldea_controller@index');
+Route::get('taldearuta', 'App\http\Controllers\taldeac_controller@index');
 
-Route::get('taldearuta/{kodea}', 'App\http\Controllers\taldea_controller@erakutsi');
+Route::get('taldearuta/{kodea}', 'App\http\Controllers\taldeac_controller@erakutsi');
 
-Route::post('taldeagorde', 'App\Http\Controllers\taldea_controller@gorde');
+Route::post('taldeagorde', 'App\Http\Controllers\taldeac_controller@gorde');
 
-Route::put('taldeaeguneratu/{kodea}', 'App\Http\Controllers\taldea_controller@eguneratu');
+Route::put('taldeaeguneratu/{kodea}', 'App\Http\Controllers\taldeac_controller@eguneratu');
 
-Route::put('taldeaezabatu/{kodea}', 'App\Http\Controllers\taldea_controller@ezabatu');
+Route::put('taldeaezabatu/{kodea}', 'App\Http\Controllers\taldeac_controller@ezabatu');
 
 
 //Langileak
