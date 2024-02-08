@@ -318,3 +318,14 @@ Route::post('materialaerabiligorde', [materiala_erabili_controller::class, 'gord
 // Route::put('materialaerabiliezabatu/{id}', 'App\Http\Controllers\materiala_erabili_controller@ezabatu');
 
 Route::put('materialaerabiliezabatu/{id}', [materiala_erabili_controller::class, 'ezabatu']);
+
+
+// Ticket_lerroa 
+
+// Route::get('ticketlerroaruta', 'App\http\Controllers\ticket_lerroa_controller@index');
+
+Route::get('ticketlerroaruta', [ticket_lerroa_controller::class, 'index']);
+
+// Route::post('ticketlerroagorde', 'App\http\Controllers\ticket_lerroa_controller@gorde');
+
+Route::post('ticketlerroagorde', [ticket_lerroa_controller::class, 'gorde']);
