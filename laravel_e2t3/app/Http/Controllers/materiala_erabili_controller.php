@@ -60,7 +60,8 @@ class materiala_erabili_controller extends Controller
     }
 
 
-    public function ezabatu(Request $aux, $id)
+    public function ezabatu(Request $aux,
+     $id)
     {
         // Obtén el conjunto de datos
         $dato = $aux->all();

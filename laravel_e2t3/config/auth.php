@@ -59,10 +59,13 @@ return [
     |
     */
 
+    /*  CAMBIADO PARA QUE NO PILLE LA TABLA POR DEFECTO*/
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Erabiltzailea::class,
+            // 'model' => App\Models\User::class,
+
         ],
 
         // 'users' => [

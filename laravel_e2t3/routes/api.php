@@ -17,6 +17,8 @@ use App\Http\Controllers\tratamendua_controller;
 use App\Http\Controllers\bezero_fitxa_controller;
 use App\Http\Controllers\kolore_historiala_controller;
 use App\Http\Controllers\hitzordua_controller;
+use App\Http\Controllers\ticket_lerroa_controller;
+use App\Http\Controllers\erabiltzailea_controller;
 
 
 /*
@@ -329,3 +331,20 @@ Route::get('ticketlerroaruta', [ticket_lerroa_controller::class, 'index']);
 // Route::post('ticketlerroagorde', 'App\http\Controllers\ticket_lerroa_controller@gorde');
 
 Route::post('ticketlerroagorde', [ticket_lerroa_controller::class, 'gorde']);
+
+
+
+// Erabiltzailea
+
+Route::get('erabiltzailearuta', [erabiltzailea_controller::class, 'index']);
+
+Route::get('erabiltzailearuta/{username}', [erabiltzailea_controller::class, 'erakutsi']);
+
+Route::post('erabiltzaileagorde', [erabiltzailea_controller::class, 'gorde']);
+
+Route::put('erabiltzaileaeguneratu/{username}', [erabiltzailea_controller::class, 'eguneratu']);
+
+Route::put('erabiltzaileaezabatu/{username}', [erabiltzailea_controller::class, 'ezabatu']);
+
+Route::post('login', [erabiltzailea_controller::class, 'login']);
+
