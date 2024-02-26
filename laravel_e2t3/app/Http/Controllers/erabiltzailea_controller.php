@@ -25,7 +25,7 @@ class erabiltzailea_controller extends Controller
     public function gorde(Request $aux)
     {
         $datos = $aux->all();
-        $nuevoErabiltzaile = ["username" => $datos["username"], "pasahitza" => Hash::make($datos["pasahitza"]), "rola" => $datos["rola"], "created_at" => now()];
+        $nuevoErabiltzaile = ["username" => $datos["username"], "pasahitza" => password_hash($datos["pasahitza"], PASSWORD_BCRYPT), "rola" => $datos["rola"], "created_at" => now()];
 
         // Guarda el nuevo registro en la base de datos
         Erabiltzailea::insert($nuevoErabiltzaile);
@@ -40,7 +40,7 @@ class erabiltzailea_controller extends Controller
 
         // Verifica si se proporciona un nuevo nombre y actualiza el array en consecuencia
         $erabiltzaileEguneratuta = [
-            'pasahitza' => Hash::make($datos["pasahitza"]),
+            'pasahitza' => password_hash($datos["pasahitza"], PASSWORD_BCRYPT),
             'rola' => isset($datos['rola']) ? $datos['rola'] : null,
             'deleted_at' => null,
             'updated_at' => now()
