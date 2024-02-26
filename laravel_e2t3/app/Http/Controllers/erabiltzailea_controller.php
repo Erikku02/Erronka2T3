@@ -96,18 +96,24 @@ class erabiltzailea_controller extends Controller
 
     public function login(Request $request)
     {
+        // echo "request" . $request;
         $username = $request->input('username');
         $password = $request->input('pasahitza');
         $user = Erabiltzailea::where('username', $username)->first();
 
         // echo $username;
         // echo $password;
-        // echo $user;
+        // echo " user->pasahitza: " . $user->pasahitza;
+        // echo password_hash("1234", PASSWORD_BCRYPT);
+        /* 
+                echo "<prep>",
+                    var_dump(password_verify($password, $user->pasahitza));
+                echo "<prep>"; */
 
         // Verificar si el usuario existe y no ha sido borrado lógicamente
         if ($user && is_null($user->deleted_at)) {
             // Verificar si la contraseña es correcta
-            if ($user->pasahitza && Hash::check($password, $user->pasahitza)) {
+            if ($user->pasahitza && password_verify($password, $user->pasahitza)) {
                 return response()->json(['message' => 'Autenticación exitosa'], 200);
             } else {
                 // Contraseña incorrecta
