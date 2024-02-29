@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Taldea;
+use App\Models\Langilea;
+
 
 class taldea_controller extends Controller
 {
@@ -57,24 +59,52 @@ class taldea_controller extends Controller
     }
 
 
+    // public function ezabatu(Request $aux, $kodea)
+    // {
+    //     $datos = $aux->all();
+    //     $taldeEguneratuta = ["deleted_at" => now()];
+    //     // Actualiza los valores del modelo con los datos del formulario
+    //     $eguneratuTaula = Taldea::where('kodea', $kodea)->update($taldeEguneratuta);
+
+    //     // Si no se encuentra el registro, devuelve un error 404
+    //     if (!$eguneratuTaula) {
+    //         return response()->json(['error' => 'Registro no encontrado'], 404);
+    //     }
+
+    //     $this->ezabatuLangile($kodea);
+
+    //     // Devuelve el registro actualizado con un código de estado 200
+    //     return response()->json($eguneratuTaula, 200);
+    // }
+
+    public function comprobarLangileak($kodea)
+    {
+        $taldea = Taldea::with('langileak')->where('kodea', $kodea)->first();
+        if ($taldea->langileak->count() > 0) {
+            return response()->json(['message' => 'Este grupo tiene langileak activos']);
+        }
+    
+        return response()->json(['message' => 'Este grupo no tiene langileak activos']);
+    }
+    
     public function ezabatu(Request $aux, $kodea)
     {
         $datos = $aux->all();
         $taldeEguneratuta = ["deleted_at" => now()];
-        // Actualiza los valores del modelo con los datos del formulario
         $eguneratuTaula = Taldea::where('kodea', $kodea)->update($taldeEguneratuta);
-
-        // Si no se encuentra el registro, devuelve un error 404
+        
         if (!$eguneratuTaula) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
         }
-
-        $this->ezabatuLangile($kodea);
-
-        // Devuelve el registro actualizado con un código de estado 200
-        return response()->json($eguneratuTaula, 200);
+        
+        $taldea = Taldea::with('langileak')->where('kodea', $kodea)->first();
+        if ($taldea->langileak->count() > 0) {
+            return response()->json(['message' => 'Este grupo tiene langileak activos, ¿seguro que quieres eliminarlo?']);
+        }
+        
+        return response()->json(['message' => 'El grupo se eliminó correctamente'], 200);
     }
-
+    
     
     public function ezabatuLangile($kodea)
     {

@@ -57,6 +57,9 @@ Route::put('taldeaeguneratu/{kodea}', [taldea_controller::class, 'eguneratu']);
 
 Route::put('taldeaezabatu/{kodea}', [taldea_controller::class, 'ezabatu']);
 
+Route::get('taldeaComprobarLangileak/{kodea}', [taldea_controller::class, 'comprobarLangileak']);
+
+
 //Langileak
 
 // Route::get('langilearuta', 'App\http\Controllers\langilea_controller@index');

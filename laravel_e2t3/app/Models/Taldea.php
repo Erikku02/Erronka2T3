@@ -23,7 +23,7 @@ class Taldea extends Model
     ];
 
     public function langileak()
-{
-    return $this->hasMany(Langilea::class, 'kodea', 'kodea');
-}
+    {
+        return $this->hasMany(Langilea::class, 'kodea', 'kodea')->whereNull('deleted_at');
+    }
 }
