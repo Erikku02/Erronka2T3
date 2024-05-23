@@ -248,6 +248,8 @@ Route::put('tratamenduaeguneratu/{id}', [tratamendua_controller::class, 'egunera
 
 Route::put('tratamenduaezabatu/{id}', [tratamendua_controller::class, 'ezabatu']);
 
+Route::get('/tratamenduastats/{talde}', [tratamendua_controller::class, 'langileTratamenduStats']);
+
 
 //Bezero_fitxak
 

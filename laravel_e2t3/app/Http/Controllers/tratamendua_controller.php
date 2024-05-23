@@ -4,9 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tratamendua;
+use App\Models\Langilea;
+use App\Models\Hitzordua;
+use App\Models\TicketLerroa;
 
 class tratamendua_controller extends Controller
 {
+    public function langileTratamenduStats($talde){
+        $stats = Tratamendua::join('ticket_lerroa', 'tratamendua.id', '=', 'ticket_lerroa.id_tratamendua')
+                            ->join('hitzordua', 'ticket_lerroa.id_hitzordua', '=', 'hitzordua.id')
+                            ->join('langilea', 'hitzordua.id_langilea', '=', 'langilea.id')
+                            ->where('langilea.kodea', '=', $talde)
+                            ->select('langilea.izena as izena', 'tratamendua.izena as tratamendua', 
+                                    \DB::raw('COUNT(tratamendua.id) as kantitatea'))
+                            ->groupBy('langilea.izena', 'tratamendua.izena')
+                            ->orderBy('langilea.izena', 'asc')
+                            ->orderBy('kantitatea', 'desc')
+                            ->get();
+        return response()->json($stats, 200);
+    }
+    
+
     public function index(){
         $table = Tratamendua::all();
         return response()->json($table, 200);
@@ -78,3 +96,4 @@ class tratamendua_controller extends Controller
         return response()->json($eguneratuTaula, 200);
     }
 }
+
